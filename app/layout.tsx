@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Caveat, Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { INTRO_BOOT, IntroLoader } from "@/components/transition/intro-loader";
+import { RouteCurtain } from "@/components/transition/route-curtain";
 import { SITE_NAME, SITE_URL, shareMetadata } from "@/lib/site";
 import "./globals.css";
 
@@ -31,11 +33,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // The intro boot script sets data-intro on <html> before hydration.
+      suppressHydrationWarning
       className={`${archivo.variable} ${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrains.variable} ${caveat.variable} antialiased`}
     >
       {/* Browser extensions (e.g. ColorZilla) inject attributes on <body>; ignore those attribute diffs only. */}
       <body className="min-h-dvh" suppressHydrationWarning>
+        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOT }} />
         {children}
+        <RouteCurtain />
+        <IntroLoader />
       </body>
     </html>
   );
