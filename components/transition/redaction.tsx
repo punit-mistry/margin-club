@@ -7,16 +7,17 @@ import type { AnimationEvent, CSSProperties } from "react";
  * being censored, then the bars retract to reveal what's underneath.
  *
  * One red bar — the line that doesn't add up — strikes first on the way in
- * and is the last to leave on the way out.
+ * and is the last to leave on the way out. It is the top row, behind the
+ * logo, so it never sits under the (partly red) headline copy.
  */
 
 export type RedactionState = "off" | "in" | "on" | "out";
 
 const ROWS = 8;
-const RED_ROW = 5;
+const RED_ROW = 0;
 // Stagger order per row (0 = first). Fixed, so every transition feels the same.
-const IN_ORDER = [3, 1, 6, 2, 7, 0, 4, 5];
-const OUT_ORDER = [5, 2, 6, 0, 4, 7, 1, 3];
+const IN_ORDER = [0, 3, 6, 1, 7, 2, 4, 5];
+const OUT_ORDER = [7, 2, 5, 0, 4, 1, 6, 3];
 const STEP_MS = 28;
 const LAST_IN = IN_ORDER.indexOf(Math.max(...IN_ORDER));
 const LAST_OUT = OUT_ORDER.indexOf(Math.max(...OUT_ORDER));

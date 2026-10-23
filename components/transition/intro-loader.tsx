@@ -80,7 +80,10 @@ export function IntroLoader() {
       <Redaction state={exiting ? "out" : "on"} onDone={(st) => st === "out" && finish()} outDelay={180} />
       <div className="intro-content relative flex h-full w-full flex-col justify-between px-4 py-5 text-cream sm:px-8 sm:py-7">
         <div className="flex items-center justify-between text-[18px]">
-          <Logo />
+          {/* Sits on the red top bar: invert the logo's red block to ink. */}
+          <span className="[&_span[aria-hidden]]:bg-ink">
+            <Logo />
+          </span>
           <button type="button" onClick={exit} className="meta border border-cream/40 px-2 py-1 text-cream/70 hover:bg-cream hover:text-ink">
             Skip intro →
           </button>

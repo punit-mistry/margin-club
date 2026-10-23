@@ -83,7 +83,10 @@ export function RouteCurtain() {
       <Redaction state={BARS[phase]} onDone={onBars} outDelay={120} />
       <div className="curtain-content absolute inset-0 flex flex-col justify-between px-4 py-5 text-cream sm:px-8 sm:py-7">
         <div className="flex items-center justify-between text-[18px]">
-          <Logo />
+          {/* Sits on the red top bar: invert the logo's red block to ink. */}
+          <span className="[&_span[aria-hidden]]:bg-ink">
+            <Logo />
+          </span>
           <span className="meta text-cream/60">Redacting · {dest.file}</span>
         </div>
 
