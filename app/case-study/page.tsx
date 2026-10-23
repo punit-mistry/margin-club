@@ -9,10 +9,14 @@ import { caseHeadline, caseStory } from "@/features/analytics/series";
 import { investigate } from "@/lib/ai/engine";
 import { change, inrCompact, monthShort, num, pct } from "@/lib/analytics/format";
 import { fullRange } from "@/lib/analytics/periods";
+import { shareMetadata } from "@/lib/site";
+
+const DESCRIPTION = "MARGIN CLUB, a BombayCoder concept product: creative direction, AI architecture and implementation. Fictional business and data.";
 
 export const metadata: Metadata = {
   title: "Case study — designing a business detective",
-  description: "MARGIN CLUB, a BombayCoder concept product: creative direction, AI architecture and implementation. Fictional business and data.",
+  description: DESCRIPTION,
+  ...shareMetadata({ title: "Designing a business detective — MARGIN CLUB case study", description: DESCRIPTION, path: "/case-study" }),
 };
 
 const PALETTE = [

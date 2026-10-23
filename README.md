@@ -47,3 +47,11 @@ The calculations in `lib/analytics` are pure TypeScript, kept separate from the 
 ## The dataset
 
 `data/generate.ts` simulates Feb–Sep 2026 for a Mumbai D2C home-goods brand: about 5,100 orders, 12 products, 4 channels and 9 coupon campaigns. The PRNG is seeded and the simulation uses integer arithmetic only, so the server and the browser produce identical data. Promotions deepen from May, ads push two thin-margin SKUs, quick commerce launches in June with a 28% commission, and deep-discount customers repeat less. Revenue rises while contribution profit falls, and every claim in the UI is computed from these orders.
+
+## Share cards and favicon
+
+`app/opengraph-image.tsx` (plus per-route versions in `investigation/` and `case-study/`), `app/icon.tsx` and `app/apple-icon.tsx` are generated at build time with `next/og`. The renderer can't load variable fonts, so the brand type (Archivo at width 62, weight 900, plus JetBrains Mono, Caveat and Instrument Serif) is baked into SVG outlines in `components/og/glyphs.ts`. After changing fonts or adding characters, regenerate it:
+
+```bash
+node scripts/generate-og-glyphs.mjs
+```
